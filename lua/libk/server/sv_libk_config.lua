@@ -1,9 +1,14 @@
 LibK.SQL = {}
 --SQL Configuration
-LibK.SQL.UseMysql = false --Set to true to use MSQL, false will use SQLite(sv.db)
+LibK.SQL.UseMysql = true --Set to true to use MSQL, false will use SQLite(sv.db)
 --MySQL Settings
-LibK.SQL.Host = "127.0.0.1"
-LibK.SQL.Port = 3306
-LibK.SQL.User = "root"
-LibK.SQL.Password = ""
-LibK.SQL.Database = "dbname"
+if not BTGamingDatabases then
+	include("btgamingdatabases/config.lua")
+end
+local sqlcreds = BTGamingDatabases("playbtgc_btv_pointshop")
+
+LibK.SQL.Host = sqlcreds["host"]
+LibK.SQL.Port = sqlcreds["port"]
+LibK.SQL.User = sqlcreds["username"]
+LibK.SQL.Password = sqlcreds["password"]
+LibK.SQL.Database = "playbtgc_btv_pointshop"
